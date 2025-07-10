@@ -48,15 +48,27 @@ function createMobileMenu() {
   const closeBtn = document.getElementById("close-mobile-menu");
   burger.addEventListener("click", function () {
     modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
   });
   closeBtn.addEventListener("click", function () {
     modal.classList.remove("active");
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
   });
   modal.addEventListener("click", function (e) {
-    if (e.target === modal) modal.classList.remove("active");
+    if (e.target === modal) {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") modal.classList.remove("active");
+    if (e.key === "Escape") {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
   });
 }
 
