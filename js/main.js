@@ -70,6 +70,14 @@ function createMobileMenu() {
       document.documentElement.style.overflow = "";
     }
   });
+  // Закриваємо меню при натисканні на будь-який пункт
+  modal.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    });
+  });
 }
 
 function enableSmoothScrollAnchors() {
