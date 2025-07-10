@@ -95,24 +95,14 @@ function enableSmoothScrollAnchors() {
   });
 }
 
+// Головний файл ініціалізації
+// Завантаження header/footer, мобільне меню, плавна прокрутка, рік у футері, cookie-banner
+
 document.addEventListener("DOMContentLoaded", function () {
   loadPartial("header", "partials/header.html", function () {
     createMobileMenu();
     enableSmoothScrollAnchors();
   });
-  loadPartial("footer", "partials/footer.html", function () {
-    const yearSpan = document.getElementById("footer-year");
-    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-  });
-  var banner = document.getElementById("cookie-banner");
-  if (!localStorage.getItem("cookieConsent")) {
-    banner.style.display = "flex";
-  }
-  var acceptBtn = banner && banner.querySelector(".cookie-banner__accept");
-  if (acceptBtn) {
-    acceptBtn.addEventListener("click", function () {
-      localStorage.setItem("cookieConsent", "accepted");
-      banner.style.display = "none";
-    });
-  }
+  loadPartial("footer", "partials/footer.html");
+  // footer-year.js і cookie-banner.js самі підписані на DOMContentLoaded
 });
