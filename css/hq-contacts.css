@@ -74,6 +74,28 @@
   padding: 1.2rem 1rem 1.5rem 1rem;
   margin-bottom: 2rem;
 }
+.contacts-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.contacts-details li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.08rem;
+  color: var(--color-text);
+  font-weight: 500;
+  background: var(--color-bg);
+  border-radius: var(--radius-main);
+  padding: 0.7em 1.2em;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px var(--color-shadow);
+}
 @media (min-width: 768px) {
   .contacts-section {
   }

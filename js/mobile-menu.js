@@ -35,6 +35,12 @@ function createMobileMenu() {
     modal.addEventListener("click", function (e) {
       if (e.target === modal) modal.classList.remove("active");
     });
+    // Закриття модалки при кліку на будь-який пункт меню
+    modal.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        modal.classList.remove("active");
+      });
+    });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") modal.classList.remove("active");
     });

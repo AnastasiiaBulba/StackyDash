@@ -567,6 +567,8 @@ main {
   letter-spacing: 1px;
   text-align: center;
   font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
 }
 .reviews .section-title {
   font-size: 2rem;
@@ -575,6 +577,53 @@ main {
   letter-spacing: 1px;
   text-align: center;
   font-weight: bold;
+}
+.bridge-construction ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.bridge-construction li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.08rem;
+  color: var(--color-text);
+  font-weight: 500;
+  background: var(--color-bg);
+  border-radius: var(--radius-main);
+  padding: 0.7em 1.2em;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px var(--color-shadow);
+  /* Без іконок */
+}
+.bridge-construction-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bridge-construction-content > .section-title,
+.bridge-construction-content > p:first-of-type {
+  align-self: center;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+.bridge-construction-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 2.2rem;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 @media (min-width: 768px) {
   .hero-inner {
@@ -660,7 +709,7 @@ main {
   }
   .bridge-construction-inner {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     gap: 2.5rem;
   }
   .bridge-construction-img {
