@@ -1,0 +1,118 @@
+// Динамічне підключення header і footer
+function loadPartial(id, url, callback) {
+  fetch(url)
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById(id).innerHTML = html;
+      if (callback) callback();
+    });
+}
+
+function createMobileMenu() {
+  // Додаємо бургер-іконку
+  const header = document.querySelector(".site-header .container");
+  if (!header) return;
+  if (document.getElementById("burger-btn")) return; // вже додано
+  const burger = document.createElement("button");
+  burger.className = "burger";
+  burger.id = "burger-btn";
+  burger.setAttribute("aria-label", "Open menu");
+  burger.innerHTML = "<span></span><span></span><span></span>";
+  header.appendChild(burger);
+
+  // Додаємо модальне меню
+  if (!document.getElementById("mobile-menu-modal")) {
+    const modal = document.createElement("div");
+    modal.className = "mobile-menu-modal";
+    modal.id = "mobile-menu-modal";
+    modal.innerHTML = `
+      <div class="mobile-menu-content">
+        <button class="close-modal" id="close-mobile-menu" aria-label="Close menu">&times;</button>
+        <ul>
+          <li><a href="./">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-to-play">How to Play</a></li>
+          <li><a href="#bridge-construction">Bridge Construction</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="battle-log.html">Battle Log</a></li>
+          <li><a href="hq-contacts.html">Contacts</a></li>
+          <li><a href="offroad-disclaimer.html">Disclaimer</a></li>
+        </ul>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  }
+
+  // Логіка відкриття/закриття
+  const modal = document.getElementById("mobile-menu-modal");
+  const closeBtn = document.getElementById("close-mobile-menu");
+  burger.addEventListener("click", function () {
+    modal.classList.add("active");
+  });
+  closeBtn.addEventListener("click", function () {
+    modal.classList.remove("active");
+  });
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) modal.classList.remove("active");
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") modal.classList.remove("active");
+  });
+}
+
+function enableSmoothScrollAnchors() {
+  function isIndexPage() {
+    const path = location.pathname.replace(/\\/g, "/");
+    return (
+      path === "/" ||
+      path.endsWith("/index.html") ||
+      path === "/index.html" ||
+      path === "" ||
+      location.protocol === "file:"
+    );
+  }
+  const anchorLinks = Array.from(document.querySelectorAll('a[href^="#"]'));
+  anchorLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      const hash = this.getAttribute("href");
+      if (hash && hash.startsWith("#")) {
+        const target = document.querySelector(hash);
+        if (isIndexPage() && target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Закриваємо мобільне меню, якщо воно є
+          const modal = document.getElementById("mobile-menu-modal");
+          if (modal && modal.classList.contains("active")) {
+            modal.classList.remove("active");
+          }
+        } else if (!target) {
+          // Якщо не на index або елементу немає — перенаправляємо на головну з хешем
+          e.preventDefault();
+          window.location.href = "./" + hash;
+        }
+      }
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  loadPartial("header", "partials/header.html", function () {
+    createMobileMenu();
+    enableSmoothScrollAnchors();
+  });
+  loadPartial("footer", "partials/footer.html", function () {
+    const yearSpan = document.getElementById("footer-year");
+    if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+  });
+  var banner = document.getElementById("cookie-banner");
+  if (!localStorage.getItem("cookieConsent")) {
+    banner.style.display = "flex";
+  }
+  var acceptBtn = banner && banner.querySelector(".cookie-banner__accept");
+  if (acceptBtn) {
+    acceptBtn.addEventListener("click", function () {
+      localStorage.setItem("cookieConsent", "accepted");
+      banner.style.display = "none";
+    });
+  }
+});

@@ -1,0 +1,15 @@
+:root {
+  --color-bg: #f0f6ff;
+  --color-primary: #3a8fff;
+  --color-accent: #ffb300;
+  --color-tile: #4ee6c1;
+  --color-bridge: #ff5e5b;
+  --color-text: #222c36;
+  --color-muted: #7a8fa6;
+  --color-white: #fff;
+  --color-shadow: rgba(58, 143, 255, 0.12);
+  --radius-main: 18px;
+  --transition-main: 0.25s cubic-bezier(0.4, 1, 0.7, 1);
+  --font-main: system-ui, "Segoe UI", "Roboto", "Ubuntu", "Helvetica Neue",
+    sans-serif;
+}
